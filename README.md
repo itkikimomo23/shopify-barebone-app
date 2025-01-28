@@ -113,7 +113,7 @@ For extensions like Admin Link, Theme App Extensinons, Shopify Functtions, and C
     - _prefix in [app_proxy]_ = "apps"
     - _url in [app_preferences]_ = `YOUR_APP_URL`
 
-    ***1** `YOUR_APP_URL` is your cloudflared or ngrok or other platform `root` URL. If you add `?external=true` parameter to `YOUR_APP_URL`, the app UX turns into a [service connector](https://github.com/benzookapi/shopify-barebone-app-sample/wiki#for-external-service-connection) which tries to connect Shopify stores with their users. **Note that if you disable the app embedded (non embedeed app), App Bridge and its Session Token cannot be used so this app shows the same external page using its own JWT which contains "shop", instead of Session Token.** (See [this demo](https://github.com/benzookapi/shopify-barebone-app-sample/wiki#non-embedded-apps-cannot-use-app-bridge-or-session-token-so-should-render-the-external-page-with-your-own-jwt))
+    ***1** `YOUR_APP_URL` is your cloudflared or ngrok or other platform `root` URL. If you add `?external=true` parameter to `YOUR_APP_URL`, the app UX turns into a [service connector](https://github.com/benzookapi/shopify-barebone-app-sample/wiki#for-external-service-connection) which tries to connect Shopify stores with their users. **Note that if you disable the app embedded (non embedeed app), App Bridge and its Session Token cannot be used so this app shows the same external page using its own JWT which contains "shop", instead of Session Token.** 
 
 7. Execute `shopify app deploy --reset` and follow its instruction (choose your partner account, connecting to the exising app, include your configuration on deploy = YES, etc.) which registers extensions to your exising app and create `/.env` file which has extensiton ids used by this sample app (For [Shopify Functions](https://shopify.dev/api/functions) deployment using [Rust](https://www.rust-lang.org/), you need [Cargo](https://doc.rust-lang.org/cargo/) Wasm package installed first by `cargo install cargo-wasi`).
 
@@ -126,9 +126,6 @@ Access to the following endpoit.
 Or 
 
 `you can install to your development stores from the app settings in partner dashboard.`
-
-# Sample list
-All sample are available at [Wiki](../../wiki).
 
 # Trouble shooting
 - Your server needs to render the top page at acceptable speed in the right way. Too slow access, error HTTP codes, or server shutdown causes the error above in live stores (not in development ones). Some cloud plarform like Render, Heroku, etc do the very slow response for the first time in a while with free plans, so you need to swtich to [Cloudflare tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/) or [ngrok](https://ngrok.com/) hosting or pay those services for higher performence.
